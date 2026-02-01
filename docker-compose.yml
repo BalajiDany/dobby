@@ -34,8 +34,7 @@ services:
       # N8N Configurations
       - N8N_DIAGNOSTICS_ENABLED=false
       - N8N_ENCRYPTION_KEY=${N8N_ENCRYPTION_KEY}
-      # Disable SSL for VPN
-      - NODE_TLS_REJECT_UNAUTHORIZED=0
+      - N8N_SECURE_COOKIE=${N8N_SECURE_COOKIE:-true}
     depends_on:
       - postgres
 
