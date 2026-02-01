@@ -8,6 +8,7 @@ services:
       - POSTGRES_USER=${POSTGRES_DB_USER}
       - POSTGRES_PASSWORD=${POSTGRES_DB_PASSWORD}
       - POSTGRES_DB=${POSTGRES_DB}
+    restart: unless-stopped
 
   n8n:
     image: n8nio/n8n
@@ -39,6 +40,7 @@ services:
       - NODE_TLS_REJECT_UNAUTHORIZED=${NODE_TLS_REJECT_UNAUTHORIZED:-1}
     depends_on:
       - postgres
+    restart: unless-stopped
 
   n8n-runners:
     image: n8nio/runners
@@ -47,6 +49,7 @@ services:
       - N8N_RUNNERS_AUTH_TOKEN=${N8N_RUNNERS_AUTH_TOKEN}
     depends_on:
       - n8n
+    restart: unless-stopped
 
   core:
     build:
@@ -65,6 +68,7 @@ services:
       - BACKUP_GIT_REPO=${BACKUP_GIT_REPO}
       - BACKUP_GIT_BRANCH=${BACKUP_GIT_BRANCH}
       - BACKUP_GIT_ACCESS_TOKEN=${BACKUP_GIT_ACCESS_TOKEN}
+    restart: unless-stopped
 
 volumes:
   postgres_data:
